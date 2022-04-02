@@ -1,14 +1,14 @@
-const User = require('../models/user')
-const mongoose = require('mongoose')
+const User = require('../models/user.model')
 
-exports.default('/', (req,res) => {
+
+const testRoute = (req,res) => {
     res.status(200).json({
         "message": "route is working",
         "status": "ok"
     })
-})
+}
 
-exports.getAllUsers('/', async(req, res) => {
+const getAllUsers = async(req, res) => {
     try{
         const allUsers = await User.find();
         res.status(200).send(allUsers)
@@ -16,4 +16,15 @@ exports.getAllUsers('/', async(req, res) => {
     catch{
         res.status(500).send("Internal Server Error")
     }
-})
+}
+
+const createUser = (req,res) => {
+    const newUser = User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    })
+    res.status(200).json(newUser)
+}
+
+module.exports = {testRoute, getAllUsers, createUser}
