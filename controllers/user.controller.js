@@ -13,7 +13,8 @@ const getAllUsers = async(req, res) => {
         const allUsers = await User.find();
         res.status(200).send(allUsers)
     }
-    catch{
+    catch (err){
+        console.log(err)
         res.status(500).send("Internal Server Error")
     }
 }
@@ -27,4 +28,14 @@ const createUser = (req,res) => {
     res.status(200).send(newUser)
 }
 
-module.exports = {testRoute, getAllUsers, createUser}
+
+const updateUser = async(req, res) => {
+    await User.findOne({email: req.params.email})
+    const data = {
+        let name: req.body.name,
+        let email: req.body.email,
+        let password: req.body.password
+    }
+
+}
+module.exports = {testRoute, getAllUsers, createUser, updateUser}
