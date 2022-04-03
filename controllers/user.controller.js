@@ -24,7 +24,7 @@ const createUser = (req,res) => {
         email: req.body.email,
         password: req.body.password
     })
-    res.status(200).json(newUser)
+    res.status(200).send(newUser)
 }
 
 module.exports = {testRoute, getAllUsers, createUser}
