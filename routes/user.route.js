@@ -10,5 +10,7 @@ userRouter.get('/all-users', userController.getAllUsers)
 
 userRouter.post('/new-user',upload.none(), userController.createUser)
 
+userRouter.put('/update-user', userController.updateUser)
+
 
 module.exports = userRouter;

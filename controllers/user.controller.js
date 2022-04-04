@@ -1,3 +1,4 @@
+const { findOneAndDelete } = require('../models/user.model');
 const User = require('../models/user.model')
 
 
@@ -14,28 +15,45 @@ const getAllUsers = async(req, res) => {
         res.status(200).send(allUsers)
     }
     catch (err){
-        console.log(err)
-        res.status(500).send("Internal Server Error")
+        console.log(err.message)
+        res.status(500).json({message: "Internal Server Error"})
     }
 }
 
-const createUser = (req,res) => {
-    const newUser = User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    })
-    res.status(200).send(newUser)
+const createUser = async(req,res) => {
+    try{
+        const newUser = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        })
+        res.status(200).json(newUser)
+        console.log(newUser)
+    }catch(err){
+        console.log(err.message)
+        res.status(500).json({message: err.message})
+    }
 }
 
 
 const updateUser = async(req, res) => {
-    await User.findOne({email: req.params.email})
-    const data = {
-        let name: req.body.name,
-        let email: req.body.email,
-        let password: req.body.password
+    try{
+        await User.findOneAndUpdate({email: req.params.email})
+        const data = {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        }
+        res.status(200).send(data)
+    }catch(err){
+        console.log(err.message)
+        res.status(500).json({message: err.message})
     }
+    
+}
+
+const deleteUser = async(req, res) => {
+    const email = await User.findOneAndDelete({email: req.params.email})
 
 }
 module.exports = {testRoute, getAllUsers, createUser, updateUser}
