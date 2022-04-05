@@ -38,7 +38,16 @@ const createUser = async(req,res) => {
 
 const updateUser = async(req, res) => {
     try{
-        const data = await User.findOneAndUpdate({email: req.params.email})
+        let data = await User.findOneAndUpdate({email: req.params.email})
+        if(!data){
+            res.send("User not found!")
+        }
+
+        data = {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        }
         
         res.status(200).send(data)
     }catch(err){
