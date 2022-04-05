@@ -38,12 +38,8 @@ const createUser = async(req,res) => {
 
 const updateUser = async(req, res) => {
     try{
-        await User.findOneAndUpdate({email: req.params.email})
-        const data = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
-        }
+        const data = await User.findOneAndUpdate({email: req.params.email})
+        
         res.status(200).send(data)
     }catch(err){
         console.log(err.message)
