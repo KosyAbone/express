@@ -1,14 +1,13 @@
 const express = require('express');
+require('dotenv').config()
 const app = express()
 const userRouter = require('./routes/user.route')
-const PORT = 4000;
+const PORT = process.env.PORT;
 const mongoose = require('mongoose');
-const { urlencoded } = require('express');
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-mongoose.connect(('mongodb://localhost:27017/seedDb'), () => console.log('db is running...'))
-
+mongoose.connect(process.env.URL, () => console.log('db is running...'))
 
 
 app.use('/', userRouter);
