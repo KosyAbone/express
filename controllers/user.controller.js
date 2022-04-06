@@ -1,15 +1,14 @@
-const { findOneAndDelete } = require('../models/user.model');
 const User = require('../models/user.model')
 
 
-const testRoute = (req,res) => {
+exports.testRoute = (req,res) => {
     res.status(200).json({
         "message": "route is working",
         "status": "ok"
     })
 }
 
-const getAllUsers = async(req, res) => {
+exports.getAllUsers = async(req, res) => {
     try{
         const allUsers = await User.find();
         res.status(200).send(allUsers)
@@ -20,7 +19,7 @@ const getAllUsers = async(req, res) => {
     }
 }
 
-const createUser = async(req,res) => {
+exports.createUser = async(req,res) => {
     try{
         const newUser = await User.create({
             name: req.body.name,
@@ -35,30 +34,44 @@ const createUser = async(req,res) => {
     }
 }
 
-
-const updateUser = async(req, res) => {
+exports.getUser = async(req, res) => {
     try{
-        let data = await User.findOneAndUpdate({email: req.params.email})
-        if(!data){
-            res.send("User not found!")
+        const user = await User.findOne({email: req.params.email})
+        if(!user) {
+           return res.status(404).json({message: "User Not Found"})
         }
-
-        data = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
-        }
-        
-        res.status(200).send(data)
+        res.status(200).json(user);
     }catch(err){
+        res.status(404).json({message: err.message})
+    }
+}
+
+
+exports.updateUser = async(req, res) => {
+    if(!req.body){
+        res.status(400).send({message: "Cannot update empty data!"})
+    }
+    try{
+        const updatedUser = await User.findOneAndUpdate({email: req.params.email}, req.body)
+        if(!updatedUser){
+           return res.status(404).send("User not found!")
+        }
+        res.status(200).json(updatedUser)
+    } catch(err){
         console.log(err.message)
-        res.status(500).json({message: err.message})
+        res.status(500).send({message: err.message})
     }
     
 }
 
-const deleteUser = async(req, res) => {
-    const email = await User.findOneAndDelete({email: req.params.email})
-
+exports.deleteUser = async(req, res) => {
+    try{
+        const user = await User.findOneAndDelete({email: req.params.email})
+        if(!user){
+            return res.status(404).send('User Does Not Exist!')
+        }
+        res.status(200).json({message: "delete successful"})
+    }catch(err){
+        res.status(500).json({message: err.message})
+    }
 }
-module.exports = {testRoute, getAllUsers, createUser, updateUser}

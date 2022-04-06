@@ -10,7 +10,11 @@ userRouter.get('/all-users', userController.getAllUsers)
 
 userRouter.post('/new-user',upload.none(), userController.createUser)
 
-userRouter.put('/update-user', userController.updateUser)
+userRouter.put('/update/:email', userController.updateUser)
+
+userRouter.get('/user/:email', userController.getUser)
+
+userRouter.delete('/user/:email', userController.deleteUser)
 
 
 module.exports = userRouter;
