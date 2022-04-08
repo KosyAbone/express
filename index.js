@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}))
 mongoose.connect(process.env.URL, () => console.log('db is running...'))
 
 
-app.use('/', userRouter);
+app.use('/user', userRouter);
 
 app.listen(PORT, () => {
     console.log(`Express Server listening on port ${PORT}`);
