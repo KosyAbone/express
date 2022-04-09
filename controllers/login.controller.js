@@ -1,4 +1,4 @@
-const User = require('../models/user.model')
+const User = require('../models/login.model')
 
 
 exports.testRoute = (req,res) => {
@@ -56,7 +56,7 @@ exports.updateUser = async(req, res) => {
         if(!updatedUser){
            return res.status(404).send("User not found!")
         }
-        console.log(updatedUser)
+        //console.log(updatedUser)
         res.status(200).json(updatedUser)
     } catch(err){
         console.log(err.message)
