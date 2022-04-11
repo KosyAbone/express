@@ -5,7 +5,15 @@ const mongoose = require('mongoose');
 const bookRouter = require('./routes/book.route')
 const registerRouter = require('./routes/register.route')
 
-mongoose.connect(process.env.URL, () => console.log('db is running...'))
+mongoose
+    .connect(process.env.URL,{ useNewUrlParser: true})
+    .then(() => {
+      console.log("DB is connected");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
