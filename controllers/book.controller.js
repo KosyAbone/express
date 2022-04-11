@@ -23,8 +23,8 @@ exports.createBook = async(req,res) => {
     try{
         const newBook = await Book.create({
             name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
+            author: req.body.author,
+            isAvailable: req.body.isAvailable
         })
         res.status(200).json(newBook)
         console.log(newBook)
@@ -36,11 +36,11 @@ exports.createBook = async(req,res) => {
 
 exports.getBook = async(req, res) => {
     try{
-        const Book = await Book.findOne({name: req.params.name})
-        if(!Book) {
+        const book = await Book.findOne({name: req.params.name})
+        if(!book) {
            return res.status(404).json({message: "Book Not Found"})
         }
-        res.status(200).json(Book);
+        res.status(200).json(book);
     }catch(err){
         res.status(404).json({message: err.message})
     }
@@ -67,8 +67,8 @@ exports.updateBook = async(req, res) => {
 
 exports.deleteBook = async(req, res) => {
     try{
-        const Book = await Book.findOneAndDelete({name: req.params.name})
-        if(!Book){
+        const book = await Book.findOneAndDelete({name: req.params.name})
+        if(!book){
             return res.status(404).send('Book Does Not Exist!')
         }
         res.status(200).json({message: "delete successful"})

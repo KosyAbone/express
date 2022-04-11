@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     lastName: {type: String, required: true, default: null},
     email: {type: String, required: true, default: null, unique: true},
     password: {type: String, required: true, default: null},
-    dateCreated: {type: Date, default: new Date.now()}
+    dateCreated: {type: Date, default: new Date()}
 })
 
 const User = mongoose.model('User', UserSchema)
