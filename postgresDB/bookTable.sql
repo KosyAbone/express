@@ -6,9 +6,10 @@ CREATE TABLE books(
     created_on TIMESTAMP
 );
 
-INSERT INTO books (id, title, author, year) VALUES ('1', 'Harry Porter' , 'JK Rowlings' , '10-10-2001');
-INSERT INTO books (id, title, author, year) VALUES ('2', 'Purple Hibiscus' , 'Chimamanda Adichie' , '10-07-1994');
-INSERT INTO books (id, title, author, year) VALUES ('3', 'Life in a year' , 'NETFLIX' , '06-11-2014');
-INSERT INTO books (id, title, author, year) VALUES ('4', 'Things fall Apart' , 'Chinua Achebe' , '06-01-1983');
+INSERT INTO books (id, title, author, year) VALUES 
+    ('1', 'Harry Porter' , 'JK Rowlings' , '10-10-2001');
+    ('2', 'Purple Hibiscus' , 'Chimamanda Adichie' , '10-07-1994');
+    ('3', 'Life in a year' , 'NETFLIX' , '06-11-2014');
+    ('4', 'Things fall Apart' , 'Chinua Achebe' , '06-01-1983');
 
 ALTER TABLE books DROP COLUMN bookname;
