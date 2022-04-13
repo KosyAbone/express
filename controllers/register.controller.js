@@ -5,17 +5,6 @@ exports.test = (req, res) => {
     res.status(200).json({message: 'test route is working', status: 'success'})
 }
 
-exports.getUser = async(req,res) => {
-    const { email } = req.body
-
-    try{
-        const userFound = await User.findOne({email});
-        if(!userFound) return res.status(404).send("User does not Exist. Create Account");
-        res.status(200).json(userFound)
-    }catch(err){
-        res.status(500).json({message: err.message})
-    }
-}
 
 exports.createUser = async(req, res) => {
     const { firstName, lastName, email, phone, password } = req.body;
@@ -37,7 +26,7 @@ exports.createUser = async(req, res) => {
             phone,
             password: encryptedPassword
         })
-        console.log(user)
+        // console.log(user)
         res.status(201).json(user)
 
     }catch(err){
