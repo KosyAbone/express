@@ -1,5 +1,8 @@
+require('dotenv').config()
 const User = require('../models/register.model')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const secretKey = process.env.SECRET_KEY
 
 exports.test = (req, res) => {
     res.status(200).json({message: 'test route is working', status: 'success'})
@@ -26,6 +29,11 @@ exports.createUser = async(req, res) => {
             phone,
             password: encryptedPassword
         })
+
+        const token = jwt.sign({id: user._id, email}, secretKey, {expiresIn: '2h'})
+
+        user.token = token;
+
         // console.log(user)
         res.status(201).json(user)
 
