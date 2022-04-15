@@ -6,6 +6,10 @@ exports.login = async(req, res) => {
     const { username, password } = req.body
 
     if(username && password && await bcrypt.compare(User.password, password)){
-        
+        const payload = {
+            username,
+            password
+        }
+        const token = jwt.sign()
     }
 }
