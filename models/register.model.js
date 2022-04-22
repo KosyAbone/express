@@ -5,6 +5,8 @@ const UserSchema = new mongoose.Schema({
     lastName: {type: String, required: true, default: null},
     email: {type: String, required: true, default: null, unique: true},
     phone: {type: String, required: true, default: null},
+    gender:{type: String, required: true},
+    address:{type: String, required: true, min:10, max:100},
     password: {type: String, required: true, default: null},
     token: {type: String},
     dateCreated: {type: Date, default: new Date()}
