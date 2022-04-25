@@ -1,20 +1,20 @@
 const express = require('express')
-const bookRouter = express.Router()
+const router = express.Router()
 const bookController = require('../controllers/book.controller')
 const multer = require('multer')
 const upload = multer()
 
-//bookRouter.get('/', bookController.testRoute)
+//router.get('/', bookController.testRoute)
 
-bookRouter.get('/', bookController.getAllBooks)
+router.get('/', bookController.getAllBooks)
 
-bookRouter.post('/',upload.none(), bookController.createBook)
+router.post('/',upload.none(), bookController.createBook)
 
-bookRouter.put('/:name', bookController.updateBook)
+router.put('/:name', bookController.updateBook)
 
-bookRouter.get('/:name', bookController.getBook)
+router.get('/:name', bookController.getBook)
 
-bookRouter.delete('/:name', bookController.deleteBook)
+router.delete('/:name', bookController.deleteBook)
 
 
-module.exports = bookRouter;
+module.exports = router;

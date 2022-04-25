@@ -52,7 +52,8 @@ exports.updateBook = async(req, res) => {
         res.status(400).send({message: "Cannot update empty data!"})
     }
     try{
-        const updatedBook = await Book.findOneAndUpdate({name: req.params.name}, req.body)
+        const updatedBook = await Book.findOneAndUpdate({name: req.params.name}, req.body, {new: true})
+        
         if(!updatedBook){
            return res.status(404).send("Book not found!")
         }
