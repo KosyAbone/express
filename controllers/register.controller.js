@@ -10,7 +10,7 @@ exports.test = (req, res) => {
 
 
 exports.createUser = async(req, res) => {
-    const { firstName, lastName, email, phone, password } = req.body;
+    const { firstName, lastName, email, phone, gender, address, password } = req.body;
 
     try{
         const existingUser = await User.findOne({email})
@@ -20,13 +20,15 @@ exports.createUser = async(req, res) => {
             //return res.redirect('/login')
         }
 
-        encryptedPassword = await bcrypt.hash(password, 10)
+        encryptedPassword = await bcrypt.hash(password.toString(), 10)
 
         const user = await User.create({
             firstName,
             lastName,
             email: email.toLowerCase(),
             phone,
+            gender,
+            address,
             password: encryptedPassword
         })
 
@@ -35,8 +37,8 @@ exports.createUser = async(req, res) => {
         user.token = token;
 
         // console.log(user)
-        res.status(201).json(user)
-
+        // res.status(201).json(user)
+        res.status(201).send(`Account created successfully. Welcome to SeedHub ${firstName}`)
     }catch(err){
         res.status(500).json({message: err.message})
     }

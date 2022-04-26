@@ -9,6 +9,7 @@ const loginRouter = require('./routes/login.route')
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+
 app.use('/register', registerRouter);
 app.use('/book', bookRouter);
 app.use('/login', loginRouter)
