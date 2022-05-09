@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const bookController = require('../controllers/book.controller')
+const bookController = require('../../Backend/controllers/book.controller')
 const multer = require('multer')
 const upload = multer()
 

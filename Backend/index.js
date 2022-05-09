@@ -2,9 +2,9 @@ require('dotenv').config()
 require('./database').connect()
 const express = require('express');
 const app = express()
-const bookRouter = require('./routes/book.route')
-const registerRouter = require('./routes/register.route')
-const loginRouter = require('./routes/login.route')
+const bookRouter = require('../Backend/routes/book.route')
+const registerRouter = require('../Backend/routes/register.route')
+const loginRouter = require('../Backend/routes/login.route')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
