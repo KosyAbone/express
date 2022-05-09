@@ -1,5 +1,5 @@
 require('dotenv').config()
-const User = require('../Backend/models/register.model')
+const User = require('../../Backend/models/register.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const secretKey = process.env.SECRET_KEY
