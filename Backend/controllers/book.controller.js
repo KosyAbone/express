@@ -1,4 +1,4 @@
-const Book = require('../models/book.model')
+const Book = require('../Backend/models/book.model')
 
 
 exports.testRoute = (req,res) => {
