@@ -9,6 +9,9 @@ const loginRouter = require('./Backend/routes/login.route')
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.get('/', (req, res) => {
+    res.send("Home Test Route Working!");
+})
 
 app.use('/register', registerRouter);
 app.use('/book', bookRouter);
