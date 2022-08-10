@@ -17,6 +17,6 @@ app.use('/register', registerRouter);
 app.use('/book', bookRouter);
 app.use('/login', loginRouter)
 
-// app.listen(process.env.PORT, () => {
-//     console.log(`Express Server listening on port ${process.env.PORT}`);
-// })
+app.listen(process.env.PORT, () => {
+    console.log(`Express Server listening on port ${process.env.PORT}`);
+})
