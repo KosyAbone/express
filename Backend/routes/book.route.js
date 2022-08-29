@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const bookController = require('../../Backend/controllers/book.controller')
-const multer = require('multer')
-const upload = multer()
 
 router.get('/', bookController.getAllBooks)
 
-router.post('/',upload.none(), bookController.createBook)
+router.post('/', bookController.createBook)
 
 router.put('/:name', bookController.updateBook)
 
