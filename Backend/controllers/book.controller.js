@@ -1,13 +1,6 @@
 const Book = require('../../Backend/models/book.model')
 
 
-exports.testRoute = (req,res) => {
-    res.status(200).json({
-        "message": "route is working",
-        "status": "ok"
-    })
-}
-
 exports.getAllBooks = async(req, res) => {
     try{
         const allBooks = await Book.find();

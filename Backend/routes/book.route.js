@@ -4,8 +4,6 @@ const bookController = require('../../Backend/controllers/book.controller')
 const multer = require('multer')
 const upload = multer()
 
-//router.get('/', bookController.testRoute)
-
 router.get('/', bookController.getAllBooks)
 
 router.post('/',upload.none(), bookController.createBook)
