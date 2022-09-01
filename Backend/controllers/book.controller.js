@@ -27,17 +27,17 @@ exports.createBook = async(req,res) => {
     }
 }
 
-// exports.getBook = async(req, res) => {
-//     try{
-//         const book = await Book.findOne({name: req.params.name})
-//         if(!book) {
-//            return res.status(404).json({message: "Book Not Found"})
-//         }
-//         res.status(200).json(book);
-//     }catch(err){
-//         res.status(404).json({message: err.message})
-//     }
-// }
+exports.getBook = async(req, res) => {
+    try{
+        const book = await Book.findOne({name: req.params.name})
+        if(!book) {
+           return res.status(404).json({message: "Book Not Found"})
+        }
+        res.status(200).json(book);
+    }catch(err){
+        res.status(404).json({message: err.message})
+    }
+}
 
 
 exports.updateBook = async(req, res) => {
