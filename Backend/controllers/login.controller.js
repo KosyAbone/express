@@ -18,10 +18,7 @@ exports.login = async(req, res) => {
             return res.status(404).send("Incorrect Login Details.")
 
         if(user && await bcrypt.compare(password, user.password)){
-            const token = jwt.sign(
-                {id: user._id, email}, 
-                secretKey, 
-                {expiresIn: '2h'})
+            const token = jwt.sign( {id: user._id, email}, secretKey, {expiresIn: '2h'} )
         
             user.token = token;
 
