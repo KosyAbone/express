@@ -27,9 +27,9 @@ exports.createUser = async(req, res) => {
             // lastName,
             // email: email.toLowerCase(),
             // phone,
-            // gender,
-            // address,
-            // password: encryptedPassword
+            gender,
+            address,
+            password: encryptedPassword
         })
 
         const token = jwt.sign({id: user._id, email}, secretKey, {expiresIn: '2h'})
