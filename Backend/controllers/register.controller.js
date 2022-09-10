@@ -23,13 +23,13 @@ exports.createUser = async(req, res) => {
         encryptedPassword = await bcrypt.hash(password.toString(), 10)
 
         const user = await User.create({
-            firstName,
-            lastName,
-            email: email.toLowerCase(),
-            phone,
-            gender,
-            address,
-            password: encryptedPassword
+            // firstName,
+            // lastName,
+            // email: email.toLowerCase(),
+            // phone,
+            // gender,
+            // address,
+            // password: encryptedPassword
         })
 
         const token = jwt.sign({id: user._id, email}, secretKey, {expiresIn: '2h'})
