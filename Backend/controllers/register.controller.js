@@ -23,7 +23,7 @@ exports.createUser = async(req, res) => {
         encryptedPassword = await bcrypt.hash(password.toString(), 10)
 
         const user = await User.create({
-            // firstName,
+            firstName,
             lastName,
             email: email.toLowerCase(),
             phone,
