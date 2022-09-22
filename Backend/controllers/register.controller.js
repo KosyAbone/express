@@ -34,7 +34,7 @@ exports.createUser = async(req, res) => {
 
         const token = jwt.sign({id: user._id, email}, secretKey, {expiresIn: '2h'})
 
-        
+        user.token = token;
 
         res.status(201).send(`Account created successfully. Welcome to SeedHub ${firstName}`)
     }catch(err){
