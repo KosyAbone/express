@@ -37,7 +37,7 @@ exports.createUser = async(req, res) => {
         user.token = token;
 
         res.status(201).send(`Account created successfully. Welcome to SeedHub ${firstName}`)
-    }catch(err){
-        res.status(500).json({message: err.message})
-    }
+    // }catch(err){
+    //     res.status(500).json({message: err.message})
+    // }
 }
