@@ -6,10 +6,10 @@ exports.getAllBooks = async(req, res) => {
         const allBooks = await Book.find();
         res.status(200).send(allBooks)
     }
-    // catch (err){
-    //     console.log(err.message)
-    //     res.status(500).json({message: "Internal Server Error"})
-    // }
+    catch (err){
+        console.log(err.message)
+        res.status(500).json({message: "Internal Server Error"})
+    }
 }
 
 exports.createBook = async(req,res) => {
