@@ -15,9 +15,9 @@ exports.getAllBooks = async(req, res) => {
 exports.createBook = async(req,res) => {
     try{
         const newBook = await Book.create({
-            // name: req.body.name,
-            // author: req.body.author,
-            // isAvailable: req.body.isAvailable
+            name: req.body.name,
+            author: req.body.author,
+            isAvailable: req.body.isAvailable
         })
         res.status(200).json(newBook)
         console.log(newBook)
