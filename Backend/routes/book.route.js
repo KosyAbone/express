@@ -8,9 +8,9 @@ router.post('/', bookController.createBook)
 
 router.put('/:name', bookController.updateBook)
 
-router.get('/:name', bookController.getBook)
+// router.get('/:name', bookController.getBook)
 
-router.delete('/:name', bookController.deleteBook)
+// router.delete('/:name', bookController.deleteBook)
 
 
 module.exports = router;
